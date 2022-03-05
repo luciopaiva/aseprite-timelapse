@@ -1,0 +1,20 @@
+{
+  "name": "lucio-timelapse",
+  "displayName": "Lucio's timelapse plugin",
+  "description": "A timelapse tool",
+  "version": "0.1",
+  "author": {
+    "name": "Lucio Paiva",
+    "email": "my@email.com",
+    "url": "https://mywebsite.com/"
+  },
+  "contributors": [ ],
+  "publisher": "luciopaiva",
+  "license": "MIT",
+  "categories": [ "Scripts" ],
+  "contributes": {
+    "scripts": [
+      { "path": "./snapshot.lua" }
+    ]
+  }
+}
