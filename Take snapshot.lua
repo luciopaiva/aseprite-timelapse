@@ -16,7 +16,6 @@ function getTimeLapseFileName(fullFileName, seq)
             seq = getNextSequence(timelapsePath)
         end
 
-        -- return app.fs.joinPath(timelapsePath, timestamp .. ".aseprite")
         return app.fs.joinPath(timelapsePath, getFileNameWithSequence(seq)), seq
     end
 
@@ -56,8 +55,6 @@ function decideIfShouldKeepSnapshot(tmpFileName, originalFileName, seq)
     if keepIt then
         os.rename(tmpFileName, openSeqFile(originalFileName, seq))
     else
-        -- local fileNameToRemove = getTimeLapseFileName(originalFileName, seq)
-        -- os.remove(fileNameToRemove)
         print("New file did not have any changes, so I will discard it")
     end
 end
@@ -69,28 +66,8 @@ function takeSnapshot()
         local fileName, seq = getTimeLapseFileName(sprite.filename, nil)
         if fileName then
             sprite:saveCopyAs(fileName)
-            -- local tmpFileName = os.tmpname()
-            -- sprite:saveCopyAs(tmpFileName)
-            -- print("Saved " .. fileName)
-            -- decideIfShouldKeepSnapshot(tmpFileName, sprite.filename, seq)
-        else
-            -- print("Could not take snapshot")
         end
     end
 end
 
 takeSnapshot()
-
--- os.execute("cscript test.vbs")
--- os.execute("cmd /c wscript ./test.vbs")
--- local handle = io.popen("./test.vbs")
--- local result = handle:read("*a")
--- print(result)
--- handle:close()
-
--- result, str, num = os.execute("echo test")
--- print(result)
--- print(str)
--- print(num)
--- print(debug.getinfo(1, "S").source)
-
