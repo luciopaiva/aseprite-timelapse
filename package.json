@@ -1,20 +1,19 @@
 {
-  "name": "lucio-timelapse",
-  "displayName": "Lucio's timelapse plugin",
+  "name": "timelapse",
+  "displayName": "Lucio's timelapse extension",
   "description": "A timelapse tool",
   "version": "0.1",
   "author": {
     "name": "Lucio Paiva",
-    "email": "my@email.com",
-    "url": "https://mywebsite.com/"
+    "url": "https://github.com/luciopaiva/aseprite-timelapse"
   },
   "contributors": [ ],
-  "publisher": "luciopaiva",
+  "publisher": "https://github.com/luciopaiva",
   "license": "MIT",
   "categories": [ "Scripts" ],
   "contributes": {
     "scripts": [
-      { "path": "./snapshot.lua" }
+      { "path": "./main.lua" }
     ]
   }
 }

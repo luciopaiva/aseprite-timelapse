@@ -1,20 +1,22 @@
 
-# Timelapse
+# Timelapse Aseprite extension
 
-An Aseprite script that helps you produce a timelapse of your art by letting you quickly take snapshots of your work.
+An Aseprite extension that helps you produce a timelapse of your art by automatically taking snapshots as you work on your art.
 
-Ideally, the snapshots would be taken automatically, but for that we would need a timer mechanism of some sort. Aseprite API doesn't provide something like that and there is no known way of emulating a periodic task that doesn't block the UI as it waits between snapshots. Even better, if Aseprite provided events like "pixel changed", we could respond to those changes to know when to take a new snapshot, but that mechanism doesn't exist either.
+## Installation
 
-My solution to this problem is to rely on a timer external to the application. For it to act on Aseprite, my solution involves defining a hot key for my script on Aseprite, and then [using an external application](https://github.com/luciopaiva/hotkey-repeat) that fires a timer event regularly, which sends the necessary hot key to Aseprite to trigger the script.
+Just zip this folder, name the resulting file `timelapse.aseprite-extension` and double-click it to add it to aseprite.
 
-Every time the script is triggered, it takes a snapshot of the current state of the sprite being worked on. The snapshot is saved to a file with the same name as the sprite file, but appended with the current date and time.
+## Using it
 
-Once your work is complete, you can use [timelapse-toolkit](https://github.com/luciopaiva/timelapse-toolkit) to generate a GIF animation.
+This extension will create a folder named `<filename>-timelapse` and then save a sequence of files named `0.png`, `1.png`, and so on, for every change in your sprite. Even changes like undo/redo will be registered.
 
-## Associate a shortcut with the script
+The extension will only start the sequence after your sprite is saved for the first time, since it needs to know where the file lives to know where to create the timelapse folder.
 
-To associate a shortcut, so it's easier to open the script, go to Edit -> Keyboard shortcuts and then find your script in the Menu -> Scripts section.
+Once you finish working on your art, you will need some way of turning the file sequence into an animated gif. For that, one option is to use [timelapse-toolkit](https://github.com/luciopaiva/timelapse-toolkit).
 
-## Can the script save in .aseprite format?
+## How it works
 
-No. Even if you use Aseprite itself to generate the GIF, it only accepts PNGs when creating an animation from a sequence.
+It relies on a relatively new [events feature](https://github.com/aseprite/api/blob/main/api/sprite.md#spriteevents), which lets scripts and extensions know there was a change in a sprite.
+
+This was initially a script, but aseprite does not guarantee your script will have a single instance. The user is able to spawn multiple instances of your script. This is bad because it will register multiple event listeners, triggering the file save multiple times. The solution to that was to make it into an extension, when aseprite does guarantee a single instance.
