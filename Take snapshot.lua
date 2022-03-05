@@ -22,43 +22,6 @@ function getTimeLapseFileName(fullFileName, seq)
     return nil, nil
 end
 
-function openSeqFile(originalFileName, seq)
-    local seqFileName = getTimeLapseFileName(originalFileName, seq)
-    return io.open(seqFileName, 'rb')
-end
-
-function decideIfShouldKeepSnapshot(tmpFileName, originalFileName, seq)
-    local keepIt = true
-
-    if seq > 0 then
-        local prevFile = openSeqFile(originalFileName, seq - 1)
-        local curFile = openSeqFile(tmpFileName, seq)
-
-        repeat
-            local prevContents = prevFile:read(4096)
-            local curContents = curFile:read(4096)
-
-            if not prevContents or not curContents then
-                break
-            end
-            
-            if (#prevContents ~= #curContents) or (prevContents ~= curContents) then
-                keepIt = false
-                break
-            end
-        until false
-
-        prevFile:close()
-        curFile:close()
-    end
-
-    if keepIt then
-        os.rename(tmpFileName, openSeqFile(originalFileName, seq))
-    else
-        print("New file did not have any changes, so I will discard it")
-    end
-end
-
 --[[ Finds the appropriate file name and saves a snapshot ]]
 function takeSnapshot()
     local sprite = app.activeSprite
