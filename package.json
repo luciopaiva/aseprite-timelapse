@@ -2,7 +2,7 @@
   "name": "timelapse",
   "displayName": "Lucio's timelapse extension",
   "description": "A timelapse tool",
-  "version": "0.1",
+  "version": "1.0.0",
   "author": {
     "name": "Lucio Paiva",
     "url": "https://github.com/luciopaiva/aseprite-timelapse"
