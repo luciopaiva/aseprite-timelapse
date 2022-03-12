@@ -25,6 +25,8 @@ This was initially a script, but aseprite does not guarantee your script will ha
 
 ## Advanced stuff
 
+What I am going to propose next involves recompiling aseprite to change its behavior. You can find details on how to do it [here](https://gist.github.com/luciopaiva/6a1f870f932a5f54011cc869c4d558a8).
+
 ### Getting rid of the annoying "saving file" dialog
 
 Every time a file is saved in aseprite, a modal dialog entitled "Saving file" is display for a very quick moment. It's so quick it's impossible to take a screenshot to show here, but it can be easily seen blink on the screen. Since it appears in the middle of the window, it fatally pops up in front of your art. Since timelapse constantly saves a copy of the file, it quickly escalates to become very annoying.
